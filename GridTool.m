@@ -41,8 +41,8 @@
 %
 %
 % CHANGELOG:
-% V0.1 - 0.9: Creationprocess while working on master thesis
-% V1.0 - 24. 10. 2019, final version as described in master thesis
+% V0.1 - 0.9: Creationprocess
+% V1.0 - 24. 10. 2019, first shipping version
 % V1.1 - November 2019 - Lukas Frauenlob -  added variable "data_singular_ways"
 %        in function "my_delete_singular_ways" to plot those deleted
 %        way elements in function "my_plot_ways_original" to avoid confusion
@@ -52,7 +52,9 @@
 % V1.3 - November 2019 - Lukas Frauenlob - added function my_calc_real_lengths()
 %        which calculates the real lenghts of a line and exports it. Since
 %        it takes a lot of time to compute, settings have been added.
-% V1.4 - April 2022 - Robert Gaugl - Changed name to GridTool and changed 
+% V1.4 - February 2020 - Robert Gaugl - added functionality to turn of 
+%        Camparison plot
+% V1.5 - April 2022 - Robert Gaugl - Changed name to GridTool and changed 
 %        export function to only contain relevant data
 % V1.X - Bugfixes/added features, please describe them here
 
@@ -110,7 +112,10 @@ bool.plot_ways_grouping = false;
 bool.plot_ways_final = false;
 
 % Visualize distances between all endnodes to easier set neighbourhood_treshold
-bool.histogram_distances_between_endpoints = true;
+bool.histogram_distances_between_endpoints = false;
+
+% Visualize Comparison between real line course and beeline
+bool.plot_comparison_real_beeline = false;
 
 
 %%% Optional visualisations, for debugging purposes and in-depth-research
@@ -2442,34 +2447,38 @@ function [data_ways_selected, lengths] ...
         % Transpose lengths to match the other dimension
         lengths = lengths';
         
-        % Visualisation of that lengths
-        figure
-        hold on
-        grid on
-        title('Comparsion between real line course and beeline')
-        xlabel('Longitude [°]'), ylabel('Latitude [°]')
+        if bool.plot_comparison_real_beeline
+        tic
+        disp('Start ploting comparison between real line course and beeline')
+            % Visualisation of that lengths
+            figure
+            hold on
+            grid on
+            title('Comparison between real line course and beeline')
+            xlabel('Longitude [°]'), ylabel('Latitude [°]')
 
-        % Go throuh every UID
-        for i_uid = 1 : numel_uids
+            % Go throuh every UID
+            for i_uid = 1 : numel_uids
 
-            % Plot that way only if two criterias are made
-            if lengths(i_uid).length_diff_in_percent ...
-                  > bool.beeline_visu_treshold_diff_percent ...
-               && lengths(i_uid).length_diff_absolut_in_km ...
-                  > bool.beeline_visu_treshold_diff_absolut
+                % Plot that way only if two criterias are made
+                if lengths(i_uid).length_diff_in_percent ...
+                      > bool.beeline_visu_treshold_diff_percent ...
+                   && lengths(i_uid).length_diff_absolut_in_km ...
+                      > bool.beeline_visu_treshold_diff_absolut
 
-                % Plot line between endpoints in lines with "x" as endpoint
-                bee_line_lon = [lengths(i_uid).nodes(1).lon; ...
-                                lengths(i_uid).nodes(end).lon];
-                bee_line_lat = [lengths(i_uid).nodes(1).lat; ...
-                                lengths(i_uid).nodes(end).lat];
-                plot(bee_line_lon, bee_line_lat, 'x-k', 'LineWidth', 1, ...
-                    'Markersize', 8)
+                    % Plot line between endpoints in lines with "x" as endpoint
+                    bee_line_lon = [lengths(i_uid).nodes(1).lon; ...
+                                    lengths(i_uid).nodes(end).lon];
+                    bee_line_lat = [lengths(i_uid).nodes(1).lat; ...
+                                    lengths(i_uid).nodes(end).lat];
+                    plot(bee_line_lon, bee_line_lat, 'x-k', 'LineWidth', 1, ...
+                        'Markersize', 8)
 
-                % Plot real line course as colorful ".-" segments on top
-                lons_segments = [lengths(i_uid).nodes.lon];
-                lats_segments = [lengths(i_uid).nodes.lat];
-                plot(lons_segments, lats_segments, '.-')
+                    % Plot real line course as colorful ".-" segments on top
+                    lons_segments = [lengths(i_uid).nodes.lon];
+                    lats_segments = [lengths(i_uid).nodes.lat];
+                    plot(lons_segments, lats_segments, '.-')
+                end
             end
         end
     else
