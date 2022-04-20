@@ -59,14 +59,18 @@
 % V1.X - Bugfixes/added features, please describe them here
 
 
-%% Initialize script
+%==========================================================================
+%% Initialization and Settings
+
+% Initialization
 close all
 clc 
-clearvars -except data_raw file_name file_path voltage_levels_selected
+% clearvars -except data_raw file_name file_path voltage_levels_selected
+clearvars
 overallruntime = tic;
 
 
-%% Settings
+% Settings
 % Two character country code, according to ISO-3166-1, of current country
 export_excel_country_code = "AT";
 
@@ -77,14 +81,14 @@ neighbourhood_threshold = 0.5;
 % Max. length of a line which can be a type 'busbar', in km
 busbar_max_length = 1;
 
-% Multiplier factor for the exported legnth of line (slack compensation)
+% Multiplier factor for the exported length of line (slack compensation)
 way_length_multiplier = 1.2;
 
 % Display all numbers (up to 15 digits) in console without scientific notation
 format long
 
 
-%% Calculating real line length?
+% Calculating real line length?
 % Set if the real line length should be calculated (may take some minutes) or
 % the beeline ("Luftlinie") should be used
 bool.calculate_real_line_lenth = true;
@@ -98,7 +102,7 @@ bool.beeline_visu_treshold_diff_percent = 5;
 bool.beeline_visu_treshold_diff_absolut = 0.5;
 
 
-%% Toogle visualisations on/off
+% Toogle visualisations on/off
 
 %%% Recommended visualisations
 % Visualize all selected ways, hence the original dataset 
@@ -135,7 +139,7 @@ bool.histogram_neighbouring_endnodes = false;
 bool.plot_neighbouring_endnodes = false;
 
     
-
+%==========================================================================
 %% Main Program
 % Print welcome message and a few settings
 if bool.calculate_real_line_lenth
@@ -309,13 +313,8 @@ fprintf(['\n\nOverall runtime of program: %f seconds. \n' ...
 clear overallruntime        
 
 
-
-
-
-%% Custom functions
-
-
-%%% Import Data
+%==========================================================================
+%% Import Data
 function [data_raw, file_name, file_path] ...
 	= my_import_json()
 
@@ -597,7 +596,8 @@ function [data, degrees_to_km_conversion] ...
 end
 
 
-%%% Select voltage levels
+%==========================================================================
+%% Select voltage levels
 function [data, voltage_levels_unique] ...
 	= my_count_voltage_levels(data)
 
@@ -874,7 +874,9 @@ function data_ways_selected ...
     fprintf('   ... finished! (%5.3f seconds) \n \n' , toc)
 end
 
-%%% Analyze data
+
+%==========================================================================
+%% Analyze data
 function [data, data_busbars] ...
 	= my_delete_busbars(data, bool, busbar_max_length)
 
@@ -1197,7 +1199,8 @@ function data ...
 end
 
 
-%%% Group nodes
+%==========================================================================
+%% Group nodes
 function M ...
 	= my_calc_distances_between_endpoints(data, degrees_to_km_conversion, bool)
 
@@ -2187,7 +2190,8 @@ function data ...
 end
 
 
-%%% Export
+%==========================================================================
+%% Export
 function [data, data_singular_ways] ...
     = my_delete_singular_ways(data)
 
@@ -2911,7 +2915,8 @@ function data ...
 end
 
 
-%%% Visualisation
+%==========================================================================
+%% Visualisation
 function my_plot_ways_original(data, data_busbars, voltage_levels_selected, ...
                                bool, data_singular_ways)
 

@@ -41,8 +41,8 @@
 %
 %
 % CHANGELOG:
-% V0.1 - 0.9: Creationprocess while working on master thesis
-% V1.0 - 24. 10. 2019, final version as described in master thesis
+% V0.1 - 0.9: Creationprocess
+% V1.0 - 24. 10. 2019, first shipping version
 % V1.1 - November 2019 - Lukas Frauenlob -  added variable "data_singular_ways"
 %        in function "my_delete_singular_ways" to plot those deleted
 %        way elements in function "my_plot_ways_original" to avoid confusion
@@ -52,15 +52,20 @@
 % V1.3 - November 2019 - Lukas Frauenlob - added function my_calc_real_lengths()
 %        which calculates the real lenghts of a line and exports it. Since
 %        it takes a lot of time to compute, settings have been added.
-% V1.4 - April 2022 - Robert Gaugl - Changed name to GridTool and changed 
+% V1.4 - February 2020 - Robert Gaugl - added functionality to turn of 
+%        Camparison plot
+% V1.5 - April 2022 - Robert Gaugl - Changed name to GridTool and changed 
 %        export function to only contain relevant data
 % V1.X - Bugfixes/added features, please describe them here
 
 
-%% Initialize script
+%==========================================================================
+%% Initialization and Settings
+%% Initialization
 close all
 clc 
-clearvars -except data_raw file_name file_path voltage_levels_selected
+% clearvars -except data_raw file_name file_path voltage_levels_selected
+clearvars
 overallruntime = tic;
 
 
@@ -110,7 +115,10 @@ bool.plot_ways_grouping = false;
 bool.plot_ways_final = false;
 
 % Visualize distances between all endnodes to easier set neighbourhood_treshold
-bool.histogram_distances_between_endpoints = true;
+bool.histogram_distances_between_endpoints = false;
+
+% Visualize Comparison between real line course and beeline
+bool.plot_comparison_real_beeline = false;
 
 
 %%% Optional visualisations, for debugging purposes and in-depth-research
@@ -305,12 +313,7 @@ clear overallruntime
 
 
 
-
-
-%% Custom functions
-
-
-%%% Import Data
+%% Import Data
 function [data_raw, file_name, file_path] ...
 	= my_import_json()
 
@@ -592,7 +595,7 @@ function [data, degrees_to_km_conversion] ...
 end
 
 
-%%% Select voltage levels
+%% Select voltage levels
 function [data, voltage_levels_unique] ...
 	= my_count_voltage_levels(data)
 
@@ -869,7 +872,7 @@ function data_ways_selected ...
     fprintf('   ... finished! (%5.3f seconds) \n \n' , toc)
 end
 
-%%% Analyze data
+%% Analyze data
 function [data, data_busbars] ...
 	= my_delete_busbars(data, bool, busbar_max_length)
 
@@ -1192,7 +1195,7 @@ function data ...
 end
 
 
-%%% Group nodes
+%% Group nodes
 function M ...
 	= my_calc_distances_between_endpoints(data, degrees_to_km_conversion, bool)
 
@@ -2182,7 +2185,7 @@ function data ...
 end
 
 
-%%% Export
+%% Export
 function [data, data_singular_ways] ...
     = my_delete_singular_ways(data)
 
@@ -2442,34 +2445,38 @@ function [data_ways_selected, lengths] ...
         % Transpose lengths to match the other dimension
         lengths = lengths';
         
-        % Visualisation of that lengths
-        figure
-        hold on
-        grid on
-        title('Comparsion between real line course and beeline')
-        xlabel('Longitude [°]'), ylabel('Latitude [°]')
+        if bool.plot_comparison_real_beeline
+        tic
+        disp('Start ploting comparison between real line course and beeline')
+            % Visualisation of that lengths
+            figure
+            hold on
+            grid on
+            title('Comparison between real line course and beeline')
+            xlabel('Longitude [°]'), ylabel('Latitude [°]')
 
-        % Go throuh every UID
-        for i_uid = 1 : numel_uids
+            % Go throuh every UID
+            for i_uid = 1 : numel_uids
 
-            % Plot that way only if two criterias are made
-            if lengths(i_uid).length_diff_in_percent ...
-                  > bool.beeline_visu_treshold_diff_percent ...
-               && lengths(i_uid).length_diff_absolut_in_km ...
-                  > bool.beeline_visu_treshold_diff_absolut
+                % Plot that way only if two criterias are made
+                if lengths(i_uid).length_diff_in_percent ...
+                      > bool.beeline_visu_treshold_diff_percent ...
+                   && lengths(i_uid).length_diff_absolut_in_km ...
+                      > bool.beeline_visu_treshold_diff_absolut
 
-                % Plot line between endpoints in lines with "x" as endpoint
-                bee_line_lon = [lengths(i_uid).nodes(1).lon; ...
-                                lengths(i_uid).nodes(end).lon];
-                bee_line_lat = [lengths(i_uid).nodes(1).lat; ...
-                                lengths(i_uid).nodes(end).lat];
-                plot(bee_line_lon, bee_line_lat, 'x-k', 'LineWidth', 1, ...
-                    'Markersize', 8)
+                    % Plot line between endpoints in lines with "x" as endpoint
+                    bee_line_lon = [lengths(i_uid).nodes(1).lon; ...
+                                    lengths(i_uid).nodes(end).lon];
+                    bee_line_lat = [lengths(i_uid).nodes(1).lat; ...
+                                    lengths(i_uid).nodes(end).lat];
+                    plot(bee_line_lon, bee_line_lat, 'x-k', 'LineWidth', 1, ...
+                        'Markersize', 8)
 
-                % Plot real line course as colorful ".-" segments on top
-                lons_segments = [lengths(i_uid).nodes.lon];
-                lats_segments = [lengths(i_uid).nodes.lat];
-                plot(lons_segments, lats_segments, '.-')
+                    % Plot real line course as colorful ".-" segments on top
+                    lons_segments = [lengths(i_uid).nodes.lon];
+                    lats_segments = [lengths(i_uid).nodes.lat];
+                    plot(lons_segments, lats_segments, '.-')
+                end
             end
         end
     else
@@ -2837,18 +2844,14 @@ function data ...
              way_length_multiplier)
     
     % Create column 'LtgsID'
-    LtgsID = [data(:).LtgsID]';
+    LineID = [data(:).LtgsID]';
     
     % Create column 'Land'   
-    Land = repmat(export_excel_country_code, num_of_ways, 1);
-    
-    % Create column 'Inbetriebnahmejahr'
-    Inbetriebnahmejahr = 2000 * ones(num_of_ways, 1);
+    Country = repmat(export_excel_country_code, num_of_ways, 1);
     
     % Create all 0-entry columns for "Stamm_Leitungen"
-    [R, XL, XC, Itherm,  LetztesJahr, SpgsebeneTechnisch, Leistung, ...
-    PhiPsMax, TYNDP2010_Projektnummer, TYNDP2010_Projektstatus, ...
-	Itherm_NDJF, Itherm_MA, Itherm_MJJA, Itherm_SO] ...
+    [R, XL, XC, Itherm, Capacity, ...
+    PhiPsMax] ...
         = deal(zeros(num_of_ways, 1));  
     
     %%% Export "Stamm_Leitungen" to Excel   
@@ -2859,25 +2862,22 @@ function data ...
     str_cc = [char(export_excel_country_code), '_']; 
     
     % Create table for "Stamm_Leitungen"
-    table_leitungen = table(LtgsID, Land, fromNode, toNode,  ...
+    table_leitungen = table(LineID, Country, fromNode, toNode,  ...
                             Voltage, R, XL, XC, Itherm, ...
-                            LtgLaenge, Inbetriebnahmejahr, LetztesJahr, ...
-                            SpgsebeneTechnisch, Leistung, Note, ... 
-                            PhiPsMax, TYNDP2010_Projektnummer, ...
-                            TYNDP2010_Projektstatus, Itherm_NDJF, ...
-                            Itherm_MA, Itherm_MJJA, Itherm_SO);     
+                            Length, Capacity, Note, ... 
+                            PhiPsMax);     
                         
     % Write that table to a Excel file                    
     writetable(table_leitungen, ...
-              ['tbl_Stamm_Leitungen_', str_cc, str_timestamp, '.xlsx'], ...
+              ['tbl_Lines_', str_cc, str_timestamp, '.xlsx'], ...
                'Sheet', 1)
            
     % Write all tags on sheet 2     
     writetable(struct2table(data_tags), ...
-              ['tbl_Stamm_Leitungen_', str_cc, str_timestamp, '.xlsx'], ...
+              ['tbl_Lines_', str_cc, str_timestamp, '.xlsx'], ...
                'Sheet', 2)
                         
-    fprintf(['   INFO: In "Stamm_Leitungen.xlsx" in  "Sheet 2" all tags ' ...
+    fprintf(['   INFO: In "tbl_Lines.xlsx" in  "Sheet 2" all tags ' ...
              'from all UIDs are listed! \n' ...
              '         Have a look for data inspection! \n'])
                         
@@ -2902,14 +2902,14 @@ function data ...
     table_knoten = table(NodeID, Country, Voltage, lat, lon);
                         
     % Write that table to a Excel file                    
-    writetable(table_knoten, ['Nodes_', str_cc, ...
+    writetable(table_knoten, ['tbl_Nodes_', str_cc, ...
                               str_timestamp, '.xlsx'])
 
     fprintf('   ... finished! (%5.3f seconds) \n \n', toc)
 end
 
 
-%%% Visualisation
+%% Visualisation
 function my_plot_ways_original(data, data_busbars, voltage_levels_selected, ...
                                bool, data_singular_ways)
 
