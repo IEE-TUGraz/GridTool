@@ -1,8 +1,8 @@
-%% OSM to ATLANTIS Importtool - V1.3
+%% GridTool - V1.3
 % ABSTRACT
 % This skript uses map data downloaded from the open street map project, 
 % imports it to matlab, processes, visualizes and cleans up the data and 
-% exports it in ATLANTIS-readable Excel files. The data contains information 
+% exports Excel files for nodes and lines. The data contains information 
 % and coordinates of power lines of the electric grid of any selected country.
 %
 %
@@ -52,6 +52,8 @@
 % V1.3 - November 2019 - Lukas Frauenlob - added function my_calc_real_lengths()
 %        which calculates the real lenghts of a line and exports it. Since
 %        it takes a lot of time to compute, settings have been added.
+% V1.4 - April 2022 - Robert Gaugl - Changed name to GridTool and changed 
+%        export function to only contain relevant data
 % V1.X - Bugfixes/added features, please describe them here
 
 
@@ -98,14 +100,14 @@ bool.beeline_visu_treshold_diff_absolut = 0.5;
 
 %%% Recommended visualisations
 % Visualize all selected ways, hence the original dataset 
-bool.plot_ways_original = true;
+bool.plot_ways_original = false;
 
 % Visualize all selected ways, while they are being grouped. This plot
 % includes the original and the new ways, including the threshold-circles
-bool.plot_ways_grouping = true;
+bool.plot_ways_grouping = false;
 
 % Visualize all selected ways on map, final dataset with endnodes grouped
-bool.plot_ways_final = true;
+bool.plot_ways_final = false;
 
 % Visualize distances between all endnodes to easier set neighbourhood_treshold
 bool.histogram_distances_between_endpoints = true;
@@ -137,8 +139,8 @@ else
     string_real_length = 'Real line length NOT be calculated';
 end
 
-fprintf(['WELCOME to OpenStreetMap to ATLANTIS Importtool V1.3! \n' ...
-         '(C) created by Lukas Frauenlob, IEE, TU Graz, November 2019 ' ...
+fprintf(['WELCOME to GridTool! \n' ...
+         '(C) created by Lukas Frauenlob and Robert Gaugl, IEE, TU Graz ' ...
          '\n\n\n--- Info ---\n' ...
          '   ... to restart data import, please delete variable ' ...
                  '"data_raw". \n' ...
@@ -2546,7 +2548,7 @@ function data_new ...
 
     % DESCRIPTION
     % This function creates the "LtgsID", "Leitungs-ID"/"way ID" for every
-    % way elment. The LtgsID is the main "name" a way has for ATLANTIS. The
+    % way elment. The LtgsID is the main "name" a way has. The
     % LtgsID consist of the two character countrycode defined earlier and a
     % 4 digit counter. Ways, which need to be cloned (since they carry
     % more than one system) will be duplicated/tripled or quadrupled and
@@ -2801,52 +2803,48 @@ function data ...
         end
     end 
 
-    % Create column 'Anmerkung'
+    % Create column 'Note'
     UID = [data(:).UID]';
-    Anmerkung = strcat(repmat("UID: ", num_of_ways, 1), ...
+    Note = strcat(repmat("UID: ", num_of_ways, 1), ...
                        num2str(UID, '%04.f'), string(str_annotation(:)));
             
                        
     %%% Get all the other variables needed to export "Stamm Leitungen" 
-    % Get the "vonKnoten" and "nachKnoten" NUIDs
-    vonKnoten = [data(:).node1_nuid]';
-    nachKnoten = [data(:).node2_nuid]';   
+    % Get the "fromNode" and "toNode" NUIDs
+    fromNode = [data(:).node1_nuid]';
+    toNode = [data(:).node2_nuid]';   
 
     % Create column 'SpgsebeneWert'
-    SpgsebeneWert = [data(:).voltage]' / 1000;
+    Voltage = [data(:).voltage]' / 1000;
             
     % Create column 'LtgLaenge', take real length if its exist, otherwise
     % beeline length
     if  isfield(data(1), 'length_real')   
-        LtgLaenge = [data(:).length_real]';
+        Length = [data(:).length_real]';
         fprintf(['   INFO: Real line length got used ' ...
                  '(segmentwise calculation)! \n'])
     else
-        LtgLaenge = [data(:).length]';
+        Length = [data(:).length]';
         fprintf(['   INFO: simplified line length got used ' ...
                  '(beeline - Luftlinie)! \n'])
     end
     
     % Compensate for slack
-    LtgLaenge = round(LtgLaenge * way_length_multiplier, 2);
+    Length = round(Length * way_length_multiplier, 2);
     
     fprintf(['   INFO: Length of each line got multiplied by %3.2f\n' ...
              '         for slack compensation! \n'], ...
              way_length_multiplier)
     
     % Create column 'LtgsID'
-    LtgsID = [data(:).LtgsID]';
+    LineID = [data(:).LtgsID]';
     
     % Create column 'Land'   
-    Land = repmat(export_excel_country_code, num_of_ways, 1);
-    
-    % Create column 'Inbetriebnahmejahr'
-    Inbetriebnahmejahr = 2000 * ones(num_of_ways, 1);
+    Country = repmat(export_excel_country_code, num_of_ways, 1);
     
     % Create all 0-entry columns for "Stamm_Leitungen"
-    [R, XL, XC, Itherm,  LetztesJahr, SpgsebeneTechnisch, Leistung, ...
-    PhiPsMax, TYNDP2010_Projektnummer, TYNDP2010_Projektstatus, ...
-	Itherm_NDJF, Itherm_MA, Itherm_MJJA, Itherm_SO] ...
+    [R, XL, XC, Itherm, Capacity, ...
+    PhiPsMax] ...
         = deal(zeros(num_of_ways, 1));  
     
     %%% Export "Stamm_Leitungen" to Excel   
@@ -2857,59 +2855,47 @@ function data ...
     str_cc = [char(export_excel_country_code), '_']; 
     
     % Create table for "Stamm_Leitungen"
-    table_leitungen = table(LtgsID, Land, vonKnoten, nachKnoten,  ...
-                            SpgsebeneWert, R, XL, XC, Itherm, ...
-                            LtgLaenge, Inbetriebnahmejahr, LetztesJahr, ...
-                            SpgsebeneTechnisch, Leistung, Anmerkung, ... 
-                            PhiPsMax, TYNDP2010_Projektnummer, ...
-                            TYNDP2010_Projektstatus, Itherm_NDJF, ...
-                            Itherm_MA, Itherm_MJJA, Itherm_SO);     
+    table_leitungen = table(LineID, Country, fromNode, toNode,  ...
+                            Voltage, R, XL, XC, Itherm, ...
+                            Length, Capacity, Note, ... 
+                            PhiPsMax);     
                         
     % Write that table to a Excel file                    
     writetable(table_leitungen, ...
-              ['tbl_Stamm_Leitungen_', str_cc, str_timestamp, '.xlsx'], ...
+              ['tbl_Lines_', str_cc, str_timestamp, '.xlsx'], ...
                'Sheet', 1)
            
     % Write all tags on sheet 2     
     writetable(struct2table(data_tags), ...
-              ['tbl_Stamm_Leitungen_', str_cc, str_timestamp, '.xlsx'], ...
+              ['tbl_Lines_', str_cc, str_timestamp, '.xlsx'], ...
                'Sheet', 2)
                         
-    fprintf(['   INFO: In "Stamm_Leitungen.xlsx" in  "Sheet 2" all tags ' ...
+    fprintf(['   INFO: In "tbl_Lines.xlsx" in  "Sheet 2" all tags ' ...
              'from all UIDs are listed! \n' ...
              '         Have a look for data inspection! \n'])
                         
          
-    %%% Get all the other variables needed for export "Stamm Knoten" 
-    % Create column 'KnotenID'
-    KnotenID = nuid;
+    %%% Get all the other variables needed for export "Nodes.xlsx" 
+    % Create column 'NodeID'
+    NodeID = nuid;
     
-    % Create column 'Land'   
-    Land = repmat(export_excel_country_code, num_of_unique_nodes, 1);
+    % Create column 'Country'   
+    Country = repmat(export_excel_country_code, num_of_unique_nodes, 1);
     
-    % Create column 'SpgsebeneWert'
-    SpgsebeneWert = cell2mat(nodes_conversion(:, 3)) / 1000;
+    % Create column 'Voltage'
+    Voltage = cell2mat(nodes_conversion(:, 3)) / 1000;
  
     % Create column 'lon' and 'lat'
     lon = cell2mat(nodes_conversion(:, 4));
     lat = cell2mat(nodes_conversion(:, 5));
     
-    % Create column 'Inbetriebnahmejahr'
-    Inbetriebnahmejahr = 2000 * ones(num_of_unique_nodes, 1);
-    
-    % Create all 0-entry columns for "Stamm_Knoten"
-    [Knotenname, Bevoelkerung, Anmerkung, Gewicht2, Nuts] ...
-        = deal(zeros(num_of_unique_nodes, 1));
-    
-        
-    %%% Export "Stamm_Knoten" to Excel
+
+    %%% Export "Nodes.xlsx" to Excel
     % Create table for "Stamm_Knoten"
-    table_knoten = table(KnotenID, Land, Knotenname, SpgsebeneWert, lat, ...
-                         lon, Bevoelkerung, Anmerkung, Gewicht2, ...
-                         Inbetriebnahmejahr, Nuts);
+    table_knoten = table(NodeID, Country, Voltage, lat, lon);
                         
     % Write that table to a Excel file                    
-    writetable(table_knoten, ['tbl_Stamm_Knoten_', str_cc, ...
+    writetable(table_knoten, ['tbl_Nodes_', str_cc, ...
                               str_timestamp, '.xlsx'])
 
     fprintf('   ... finished! (%5.3f seconds) \n \n', toc)
