@@ -91,7 +91,7 @@ format long
 % Calculating real line length?
 % Set if the real line length should be calculated (may take some minutes) or
 % the beeline ("Luftlinie") should be used
-bool.calculate_real_line_lenth = true;
+bool.calculate_real_line_length = true;
 
 % If real line length gets visualized, set treshhold to plot only ways which
 % have a difference in beeline-length/real-length of at least x% (standard: 5%)
@@ -142,7 +142,7 @@ bool.plot_neighbouring_endnodes = false;
 %==========================================================================
 %% Main Program
 % Print welcome message and a few settings
-if bool.calculate_real_line_lenth
+if bool.calculate_real_line_length
     string_real_length = 'Real line length WILL be calculated';
 else
     string_real_length = 'Real line length NOT be calculated';
@@ -1085,7 +1085,7 @@ function [data, dc_candidates] ...
     fprintf('   ... finished! (%5.3f seconds) \n \n', toc)
 end
 
-function data ...
+and count tfunction data ...
 	= my_count_cables(data)
 
     % DESCRIPTION
@@ -2257,7 +2257,7 @@ function [data_ways_selected, lengths] ...
     
     disp('Start calculating real length of lines...')
     
-    if bool.calculate_real_line_lenth
+    if bool.calculate_real_line_length
         tic
 
         %%% Create variable with all coordinates of all nodes of all UID ways
