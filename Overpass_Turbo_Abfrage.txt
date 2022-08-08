@@ -1,0 +1,23 @@
+[out:json][timeout:500];
+// fetch area “Austria” to search in
+(
+	area["ISO3166-1"="AT"];
+)->.searchArea;
+
+// gather results
+(
+  // query part for: “power=line and voltage between 220000 and 380000”
+  node    ["power"="line" ](if: t["voltage"] > 219999 && t["voltage"] < 380001)(area.searchArea);
+  way     ["power"="line" ](if: t["voltage"] > 219999 && t["voltage"] < 380001)(area.searchArea);
+  relation["power"="line" ](if: t["voltage"] > 219999 && t["voltage"] < 380001)(area.searchArea);
+
+  // query part for: “power=cable and voltage between 220000 and 380000”
+  node    ["power"="cable"](if: t["voltage"] > 219999 && t["voltage"] < 380001)(area.searchArea);
+  way     ["power"="cable"](if: t["voltage"] > 219999 && t["voltage"] < 380001)(area.searchArea);
+  relation["power"="cable"](if: t["voltage"] > 219999 && t["voltage"] < 380001)(area.searchArea);
+);
+
+// print results
+out body;
+>;
+out skel qt;

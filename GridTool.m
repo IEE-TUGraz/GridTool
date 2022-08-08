@@ -2994,7 +2994,7 @@ function my_plot_ways_original(data, data_busbars, voltage_levels_selected, ...
                   repmat(' kV', numel(voltage_levels_selected), 1)];
 
         % Create legend in correct color order
-        legend(labels, 'Location', 'northeastoutside', 'AutoUpdate', 'off')
+        legend(labels, 'Location', 'northwest', 'AutoUpdate', 'off')
 
         % Set the pseudo-points invisible by overriding with a white point
         plot(lon_mean, lat_mean, 'o-' , 'Color', [1 1 1])
@@ -3073,7 +3073,7 @@ function my_plot_ways_original(data, data_busbars, voltage_levels_selected, ...
                   repmat(' kV', numel(voltage_levels_selected), 1)];
 
         % Create legend in correct color order
-        legend(labels, 'Location', 'northeastoutside', 'AutoUpdate', 'off')
+        legend(labels, 'Location', 'northwest', 'AutoUpdate', 'off')
 
         % Set the pseudo-points invisible by overriding with a white point
         plot([0, 0], [0, 0], 'o-' , 'Color', [1 1 1])
@@ -3276,7 +3276,7 @@ function my_plot_ways_final(data, voltage_levels_selected, bool)
                   repmat(' kV', numel(voltage_levels_selected), 1)];
 
         % Create legend in correct color order
-        legend(labels, 'Location', 'northeastoutside', 'AutoUpdate', 'off')
+        legend(labels, 'Location', 'northwest', 'AutoUpdate', 'off')
 
         % Set the pseudo-points invisible by overriding with a white point
         plot(lon_mean, lat_mean, 'o-' , 'Color', [1 1 1]) 
@@ -3341,7 +3341,7 @@ function my_plot_ways_final(data, voltage_levels_selected, bool)
                   repmat(' kV', numel(voltage_levels_selected), 1)];
 
         % Create legend in correct color order
-        legend(labels, 'Location', 'northeastoutside', 'AutoUpdate', 'off')
+        legend(labels, 'Location', 'northwest', 'AutoUpdate', 'off')
 
         % Set the pseudo-points invisible by overriding with a white point
         plot([0, 0], [0, 0], 'o-' , 'Color', [1 1 1])
