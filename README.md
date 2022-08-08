@@ -1,7 +1,6 @@
 # GridTool
-Open-source tool to convert OpenStreetMap electricity grid data for use in energy simulation models (ESMs).
 
-GridTool is an easy-to-use tool to convert and simplify electricity grid data from [OpenStreetMap](https://www.openstreetmap.org/) for the use in energy simulation models (ESMs). Instead of relying on relations between lines and power stations (that are often missing) in the OpenStreetMap-data, the tool uses a heuristic approach to identify grid nodes and simplifying the data.
+GridTool is an easy-to-use tool to convert and simplify electricity grid data from [OpenStreetMap](https://www.openstreetmap.org/) for the use in energy simulation models (ESMs). Instead of relying on relations between lines and power stations (that are often missing) in the OpenStreetMap-data, the tool uses a heuristic approach to identify grid nodes and simplifies the data.
 
 The GridTool shortens the lengthy process of converting and simplyfying electricity grid data from transmission and distribution system operators (TSOs and DSOs) for the use in ESMs to mere seconds.
 
