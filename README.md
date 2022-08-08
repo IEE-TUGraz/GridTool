@@ -8,7 +8,7 @@ The GridTool shortens the lengthy process of converting and simplyfying electric
 The tool is programmed in MATLAB and the main advantages are its flexibility and easy customizability. The final results are two Excel files. One contains the nodes (power stations) and the second one contains the lines.
 
 ## Software Architecture
-GridTool is split into 6 modules that itself are divided into 24 functions to ensure clarity, maintainability and easy expandability. The flowchart in Figure 1 shows the 6 modules and 24 functions. A detailed description of the functionality of these functions can be found in [[1]](https://github.com/IEE-TUGraz/GridTool#references) as well as in the comments of the MATLAB code itself.
+GridTool is split into 6 modules that itself are divided into 24 functions to ensure clarity, maintainability and easy expandability. The flowchart in Figure 1 shows the 6 modules and 24 functions. A detailed description of the functionality of these functions can be found in [1] as well as in the comments of the MATLAB code itself.
 
 <p align="center">
   <img src="Figures/GridTool_FlowChart_Detailed.png" alt="Flowchart_GridTool" width="80%" /></br>
@@ -48,12 +48,17 @@ In the figure below is a comparison between the official grid map from the Austr
 The GridTool has been already used for research in different papers and projects. Some examples are listed below.
 
 ### Project START2030
-The publicly funded [START2030](https://start2030.wifo.ac.at/) aims at providing comprehensive analyses of the economic incidence and social impacts of a transition to a 100% renewable electricity system by 2030 as determined by Austria's Renewable-Energy-Act (EAG). For this the the techno-economic simulation model ATLANTIS [[2]](https://github.com/IEE-TUGraz/GridTool#references) and the macroeconomic model DYNK [[3]](https://github.com/IEE-TUGraz/GridTool#references) are linked. For this project Austria's electricity grid in ATLANTIS was expanded to include the 110 kV network. As there is no public information about the distribution grid available from the Austrian DSOs, the GridTool was utilized to use the data from OpenStreetMap.
+The publicly funded [START2030](https://start2030.wifo.ac.at/) aims at providing comprehensive analyses of the economic incidence and social impacts of a transition to a 100% renewable electricity system by 2030 as determined by Austria's Renewable-Energy-Act (EAG). For this the the techno-economic simulation model ATLANTIS [[2]](https://doi.org/10.1007/s10100-015-0413-8) and the macroeconomic model DYNK [[3]](https://doi.org/10.1016/j.enpol.2018.11.030) are linked. For this project Austria's electricity grid in ATLANTIS was expanded to include the 110 kV network. As there is no public information about the distribution grid available from the Austrian DSOs, the GridTool was utilized to use the data from OpenStreetMap.
+
+### Publication Modelling Africa's Power System
+In order to build a digital twin of Africa's power system, the GridTool has been used to get electricity grid data. The data was then implemented into the Low-Carbon Expansion and Generaton (LEGO) model to perform techno-economic simulations. A research using this digital twin about transforming Africa's power system to 100% renewables can be found here [4].
 
 ## References
 [1] R. Gaugl, S. Wogrin, U. Bachhiesl, L. Frauenlob, (2022). *"GridTool: A Heuristic Tool to Convert and Simplify Open-Source Grid Data for Use in Energy System Models,"* Paper submitted for publication.
 
 [2] H. Stigler, U. Bachhiesl, G. Nischler, G. Feichtinger, (2016). *"ATLANTIS: techno-economic model of the European electricity sector,"* Central European Journal of Operations Research, <i>24</i>(4), 965–988. [https://doi.org/10.1007/s10100-015-0413-8](https://doi.org/10.1007/s10100-015-0413-8)
 
-[3] M. Kirchner, M. Sommer, K. Kratena, D. Kletzan-Slamanig, C. Kettner-Marx, (2019). *"CO2 taxes, equity and the double dividend – Macroeconomic model simulations for Austria,"*
-Energy Policy, Volume 126, Pages 295-314, ISSN 0301-4215, [https://doi.org/10.1016/j.enpol.2018.11.030](https://doi.org/10.1016/j.enpol.2018.11.030).
+[3] M. Kirchner, M. Sommer, K. Kratena, D. Kletzan-Slamanig, C. Kettner-Marx, (2019). *"CO2 taxes, equity and the double dividend – Macroeconomic model simulations for Austria,"* Energy Policy, Volume 126, Pages 295-314, ISSN 0301-4215, [https://doi.org/10.1016/j.enpol.2018.11.030](https://doi.org/10.1016/j.enpol.2018.11.030).
+
+[4] R. Gaugl, S. Wogrin, and U. Bachhiesl (2022). *"Transition of the African Power System to Renewable Energies-A Case Study,"* MIT A+B Applied Energy Symposium
+
