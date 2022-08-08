@@ -8,7 +8,7 @@ The GridTool shortens the lengthy process of converting and simplyfying electric
 The tool is programmed in MATLAB and the main advantages are its flexibility and easy customizability. The final results are two Excel files. One contains the nodes (power stations) and the second one contains the lines.
 
 ## Software Architecture
-GridTool is split into 6 modules that itself are divided into 24 functions to ensure clarity, maintainability and easy expandability. The flowchart in Figure 1 shows the 6 modules and 24 functions. A detailed description of the functionality of these functions can be found in [[1]](https://github.com/IEE-TUGraz/GridTool/edit/main/README.md#references) as well as in the comments of the MATLAB code itself.
+GridTool is split into 6 modules that itself are divided into 24 functions to ensure clarity, maintainability and easy expandability. The flowchart in Figure 1 shows the 6 modules and 24 functions. A detailed description of the functionality of these functions can be found in [[1]](https://github.com/IEE-TUGraz/GridTool#references) as well as in the comments of the MATLAB code itself.
 
 <p align="center">
   <img src="Figures/GridTool_FlowChart_Detailed.png" alt="Flowchart_GridTool" width="80%" /></br>
@@ -39,10 +39,21 @@ In the figure below is a comparison between the official grid map from the Austr
 
 <p align="center">
   <img src="Figures/APG_Netzkarte.png" alt="APG_Netzkarte]" width="40%" />
-  &nbsp;&nbsp;&nbsp;&nbsp;
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   <img src="Figures/Final_Results_Map.png" alt="GridTool_Final_Results_Map]" width="40%" /></br>
   <b>Figure 3.</b> Official grid map from the Austrian transmission operator APG (l.s) and final results from the GridTool displayed on a map (r.s).
 </p>
 
-# References
-[1] R. Gaugl, S. Wogrin, U. Bachhiesl, L. Frauenlob (2022), *"GridTool: A Heuristic Tool to Convert and Simplify Open-Source Grid Data for Use in Energy System Models,"* Paper submitted for publication.
+## Use Cases
+The GridTool has been already used for research in different papers and projects. Some examples are listed below.
+
+### Project START2030
+The publicly funded [START2030](https://start2030.wifo.ac.at/) aims at providing comprehensive analyses of the economic incidence and social impacts of a transition to a 100% renewable electricity system by 2030 as determined by Austria's Renewable-Energy-Act (EAG). For this the the techno-economic simulation model ATLANTIS [[2]](https://github.com/IEE-TUGraz/GridTool#references) and the macroeconomic model DYNK [[3]](https://github.com/IEE-TUGraz/GridTool#references) are linked. For this project Austria's electricity grid in ATLANTIS was expanded to include the 110 kV network. As there is no public information about the distribution grid available from the Austrian DSOs, the GridTool was utilized to use the data from OpenStreetMap.
+
+<a href="http://example.com/" target="_blank">Hello, world!</a>
+
+
+## References
+[1] R. Gaugl, S. Wogrin, U. Bachhiesl, L. Frauenlob, (2022). *"GridTool: A Heuristic Tool to Convert and Simplify Open-Source Grid Data for Use in Energy System Models,"* Paper submitted for publication.
+
+[2] H. Stigler, U. Bachhiesl, G. Nischler, G. Feichtinger, (2016). *"ATLANTIS: techno-economic model of the European electricity sector,"* Central European Journal of Operations Research, <i>24</i>(4), 965–988. [https://doi.org/10.1007/s10100-015-0413-8](https://doi.org/10.1007/s10100-015-0413-8)
