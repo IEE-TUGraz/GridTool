@@ -35,7 +35,7 @@ This provides a step-by-step instruction on how to run the GridTool. The steps a
 </p>
 
 ## Illustrative Example: Austrian Transmission Grid
-In the figure below is a comparison between the official grid map from the Austrian transmission system operator APG (Downloaded: August 3th, 2022) and the result of the GridTool (data downloaded from OpenStreetMap: August 2nd, 2022). To run this illustrative example, you can use the *2022-08-02_Austria_220kV_and_380kV.json* file found in this repository with the GridTool. Figure 3 compares the official [grid map from Austrias transmission system operator APG](https://www.apg.at/stromnetz/stromnetz-oesterreich/) with the results of the GridTool.
+In the figure below is a comparison between the official grid map from the Austrian transmission system operator APG (Downloaded: August 3th, 2022) and the result of the GridTool (data downloaded from OpenStreetMap: August 2nd, 2022). To run this illustrative example, you can use the *2022-08-02_Austria_220kV_and_380kV.json* file found in this repository with the GridTool. Figure 3 compares the official grid map from Austrias transmission system operator [APG](https://www.apg.at/stromnetz/stromnetz-oesterreich/) with the results of the GridTool.
 
 <p align="center">
   <img src="Figures/APG_Netzkarte.png" alt="APG_Netzkarte]" width="40%" />
@@ -54,3 +54,6 @@ The publicly funded [START2030](https://start2030.wifo.ac.at/) aims at providing
 [1] R. Gaugl, S. Wogrin, U. Bachhiesl, L. Frauenlob, (2022). *"GridTool: A Heuristic Tool to Convert and Simplify Open-Source Grid Data for Use in Energy System Models,"* Paper submitted for publication.
 
 [2] H. Stigler, U. Bachhiesl, G. Nischler, G. Feichtinger, (2016). *"ATLANTIS: techno-economic model of the European electricity sector,"* Central European Journal of Operations Research, <i>24</i>(4), 965–988. [https://doi.org/10.1007/s10100-015-0413-8](https://doi.org/10.1007/s10100-015-0413-8)
+
+[3] M. Kirchner, M. Sommer, K. Kratena, D. Kletzan-Slamanig, C. Kettner-Marx, (2019). *"CO2 taxes, equity and the double dividend – Macroeconomic model simulations for Austria,"*
+Energy Policy, Volume 126, Pages 295-314, ISSN 0301-4215, [https://doi.org/10.1016/j.enpol.2018.11.030](https://doi.org/10.1016/j.enpol.2018.11.030).
