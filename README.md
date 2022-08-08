@@ -45,4 +45,4 @@ In the figure below is a comparison between the official grid map from the Austr
 </p>
 
 # References
-[1] MISSING.
+[1] R. Gaugl, S. Wogrin, U. Bachhiesl, L. Frauenlob (2022), *"GridTool: A Heuristic Tool to Convert and Simplify Open-Source Grid Data for Use in Energy System Models,"* Paper submitted for publication.
