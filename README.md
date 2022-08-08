@@ -35,7 +35,7 @@ This provides a step-by-step instruction on how to run the GridTool. The steps a
 </p>
 
 ## Illustrative Example: Austrian Transmission Grid
-In the figure below is a comparison between the official grid map from the Austrian transmission system operator APG (Downloaded: August 3th, 2022) and the result of the GridTool (data downloaded from OpenStreetMap: August 2nd, 2022). To run this illustrative example, you can use the *2022-08-02_Austria_220kV_and_380kV.json* file found in this repository with the GridTool. Figure 3 compares the official grid map from Austrias transmission system operator [APG](https://www.apg.at/stromnetz/stromnetz-oesterreich/) with the results of the GridTool.
+In the figure below is a comparison between the official grid map from the Austrian transmission system operator APG (downloaded: August 3rd, 2022) and the result of the GridTool (data downloaded from OpenStreetMap: August 2nd, 2022). To run this illustrative example, you can use the *2022-08-02_Austria_220kV_and_380kV.json* file found in this repository with the GridTool. Figure 3 compares the official grid map from Austrias transmission system operator [APG](https://www.apg.at/stromnetz/stromnetz-oesterreich/) with the results of the GridTool.
 
 <p align="center">
   <img src="Figures/APG_Netzkarte.png" alt="APG_Netzkarte]" width="40%" />
