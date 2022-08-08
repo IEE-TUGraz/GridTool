@@ -50,9 +50,6 @@ The GridTool has been already used for research in different papers and projects
 ### Project START2030
 The publicly funded [START2030](https://start2030.wifo.ac.at/) aims at providing comprehensive analyses of the economic incidence and social impacts of a transition to a 100% renewable electricity system by 2030 as determined by Austria's Renewable-Energy-Act (EAG). For this the the techno-economic simulation model ATLANTIS [[2]](https://github.com/IEE-TUGraz/GridTool#references) and the macroeconomic model DYNK [[3]](https://github.com/IEE-TUGraz/GridTool#references) are linked. For this project Austria's electricity grid in ATLANTIS was expanded to include the 110 kV network. As there is no public information about the distribution grid available from the Austrian DSOs, the GridTool was utilized to use the data from OpenStreetMap.
 
-<a href="http://example.com/" target="_blank">Hello, world!</a>
-
-
 ## References
 [1] R. Gaugl, S. Wogrin, U. Bachhiesl, L. Frauenlob, (2022). *"GridTool: A Heuristic Tool to Convert and Simplify Open-Source Grid Data for Use in Energy System Models,"* Paper submitted for publication.
 
