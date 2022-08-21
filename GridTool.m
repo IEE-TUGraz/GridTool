@@ -309,7 +309,7 @@ my_plot_ways_final(data_ways_selected, voltage_levels_selected, bool);
 
 
 fprintf(['\n\nOverall runtime of program: %f seconds. \n' ... 
-         'GOOD BYE! :) \n \n'], toc(overallruntime))
+         'CONVERSION COMPLETED \n \n'], toc(overallruntime))
 clear overallruntime        
 
 
