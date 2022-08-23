@@ -106,20 +106,20 @@ bool.beeline_visu_treshold_diff_absolut = 0.5;
 
 %%% Recommended visualisations
 % Visualize all selected ways, hence the original dataset 
-bool.plot_ways_original = false;
+bool.plot_ways_original = true;
 
 % Visualize all selected ways, while they are being grouped. This plot
 % includes the original and the new ways, including the threshold-circles
-bool.plot_ways_grouping = false;
+bool.plot_ways_grouping = true;
 
 % Visualize all selected ways on map, final dataset with endnodes grouped
-bool.plot_ways_final = false;
+bool.plot_ways_final = true;
 
 % Visualize distances between all endnodes to easier set neighbourhood_treshold
 bool.histogram_distances_between_endpoints = false;
 
 % Visualize Comparison between real line course and beeline
-bool.plot_comparison_real_beeline = false;
+bool.plot_comparison_real_beeline = true;
 
 
 %%% Optional visualisations, for debugging purposes and in-depth-research
