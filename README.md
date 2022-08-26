@@ -26,7 +26,7 @@ This provides a step-by-step instruction on how to run the GridTool. The steps a
 5) Run the code by clicking the "Run"-button or pressing "F5".
 4) A file window opens to select the previously downloaded json file.
 5) After a few seconds, a new window pops up to select the desired voltage levels. Multiple voltage levels can be selected by holding the "Alt" key.
-6) The GridTool is completed, when it displays "GOOD BYE" in the MATLAB console. The final files can be found in the folder where the GridTool.m file is saved.
+6) The GridTool is completed, when it displays "CONVERSION COMPLETED" in the MATLAB console. The final files can be found in the folder where the GridTool.m file is saved.
 
 <p align="center">
   <img src="Figures/GridTool_Illustrative_Example.png" alt="GridTool_Illustrative_Example]" width="80%" /></br>
