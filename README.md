@@ -6,6 +6,8 @@ The GridTool shortens the lengthy process of converting and simplyfying electric
 
 The tool is programmed in MATLAB and the main advantages are its flexibility and easy customizability. The final results are two Excel files. One contains the nodes (power stations) and the second one contains the lines.
 
+You can use this code freely according to the LICENSE file (https://opensource.org/licenses/MIT), but please cite our paper [1] if you do.
+
 ## Software Architecture
 GridTool is split into 6 modules that itself are divided into 24 functions to ensure clarity, maintainability and easy expandability. The flowchart in Figure 1 shows the 6 modules and 24 functions. A detailed description of the functionality of these functions can be found in [1] as well as in the comments of the MATLAB code itself.
 
@@ -53,7 +55,7 @@ The publicly funded project [START2030](https://start2030.wifo.ac.at/) aims at p
 In order to build a digital twin of Africa's power system, the GridTool has been used to get electricity grid data. The data was then implemented into the Low-Carbon Expansion and Generaton (LEGO) model to perform techno-economic simulations. A research using this digital twin about transforming Africa's power system to 100% renewables can be found here [[4]](https://www.energy-proceedings.org/wp-content/uploads/2022/08/MITAB_2022_paper_2510.pdf).
 
 ## References
-[1] R. Gaugl, S. Wogrin, U. Bachhiesl, L. Frauenlob, (2022). *"GridTool: An Open-Source Tool to Convert Grid Data,"* Paper submitted for publication.
+[1] R. Gaugl, S. Wogrin, U. Bachhiesl, L. Frauenlob, (2022). *"GridTool: An Open-Source Tool to Convert Grid Data,"* Preprint [https://doi.org/10.36227/techrxiv.20551569](https://doi.org/10.36227/techrxiv.20551569)
 
 [2] H. Stigler, U. Bachhiesl, G. Nischler, G. Feichtinger, (2016). *"ATLANTIS: techno-economic model of the European electricity sector,"* Central European Journal of Operations Research, <i>24</i>(4), 965–988. [https://doi.org/10.1007/s10100-015-0413-8](https://doi.org/10.1007/s10100-015-0413-8)
 
