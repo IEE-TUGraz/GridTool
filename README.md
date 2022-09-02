@@ -19,7 +19,7 @@ GridTool is split into 6 modules that itself are divided into 24 functions to en
 ## System Requirements
 * PC with MATLAB version R2021a installed and a valid licence (GridTool is programmed in a way that it should be compatible with older and newer versions, but it is not tested with other MATLAB versions.)
 
-## How to run the GridTool
+## Manual
 This provides a step-by-step instruction on how to run the GridTool. The steps are also visualized in the Figure 2.
 1) Download the GridTool.m file on a PC that meets the system requirements.
 2) Download the electricity grid data from OpenStreetMap using the [OverpassTurbo](https://overpass-turbo.eu/) website. An example of a query to download Austria's electricity grid lines between 220 kV and 380 kV can be found in the file *OverpassTurbo_Example_Query.txt*. Run the query in OverpassTurbo and export  the result as "Raw OSM data", which downloads the data in the json file format. For testing purposes you can also use the *2022-08-02_Austria_220kV_and_380kV.json* file provided in the repository.
