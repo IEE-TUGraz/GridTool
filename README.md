@@ -6,7 +6,7 @@ The GridTool shortens the lengthy process of converting and simplyfying electric
 
 The tool is programmed in MATLAB and the main advantages are its flexibility and easy customizability. The final results are two Excel files. One contains the nodes (power stations) and the second one contains the lines.
 
-You can use this code freely according to the LICENSE file (https://opensource.org/licenses/MIT), but please cite our (preprint) paper [[1]](https://doi.org/10.36227/techrxiv.20551569) if you do.
+You can use this code freely according to the [LICENSE file](https://opensource.org/licenses/MIT), but please cite our (preprint) paper [[1]](https://doi.org/10.36227/techrxiv.20551569) if you do.
 
 ## Software Architecture
 GridTool is split into 6 modules that itself are divided into 24 functions to ensure clarity, maintainability and easy expandability. The flowchart in Figure 1 shows the 6 modules and 24 functions. A detailed description of the functionality of these functions can be found in [[1]](https://doi.org/10.36227/techrxiv.20551569) as well as in the comments of the MATLAB code itself.
