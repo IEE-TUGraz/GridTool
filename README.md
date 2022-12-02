@@ -35,6 +35,16 @@ This provides a step-by-step instruction on how to run the GridTool. The steps a
   <b>Figure 2.</b> Step-by-step guide for how to use the GridTool.
 </p>
 
+## Use in ESMs
+1) Before using the data for power flow caculcations in ESMs, the results should be reviewed and rechecked with other sources (like the grid map from ENTSO-E [[2]]([https://doi.org/10.36227/techrxiv.20551569](https://www.entsoe.eu/data/map/)).
+2) The column "Note" should be checked for the following comments, which indicate a problem with the line:
+  a) **multiple vlevels**: Line has multiple voltage levels assigned to it. If it has more systems than votlage levels, the line might not have been multiplied correctl. See also warning in the MATLAB console.
+  b) **potentially DC**: This indicates that the line could be a DC-line based on tag information. Recheck with other sources advised.
+3) Add values for electric parameters (R, XL, XC, Itherm) to each line.
+4) To allow power flow between different voltage levels, transformers need to be added between nodes at the same power station. These can easily be identified by the same lat- and lon-coordinates.
+5) Integrate the data into you ESM.
+6) 
+
 ## Illustrative Example: Austrian Transmission Grid
 In the figure below is a comparison between the official grid map from the Austrian transmission system operator APG (downloaded: August 3rd, 2022) and the result of the GridTool (data downloaded from OpenStreetMap: August 2nd, 2022). To run this illustrative example, you can use the *2022-08-02_Austria_220kV_and_380kV.json* file found in this repository with the GridTool. Figure 3 compares the official grid map from Austrias transmission system operator [APG](https://www.apg.at/stromnetz/stromnetz-oesterreich/) with the results of the GridTool.
 
@@ -53,7 +63,7 @@ The GridTool provides the user with warnings in the MATLAB console if it detects
 * **ATTENTION! UNKNOWN voltage level ("XYZ") in UID XY. This way won't be selected.**: This error can happen if the voltage level in the field "voltage" is either empty or text instead of a number. A manual review of that line with that UID in the *.json file is necessary.
 * **ATTENTION! Two/Three voltage levels ("XYZ") in UID XY. This way will be duplicated/tripled**: The user is informed, that a line has two or three voltage levels and the line is doupled/tripled. No immediate user action needed, but the user can check with other sources if this is correct.
 * **ATTENTION!  Way Element UID XY has type "busbar" or "bay", but is too long. Length: X km of max. Y km. This way won't be added to the "busbar" exception list**: The user is informed that a line has a value "busbar" or "bay" but its length is longer than the length set in busbar_max_length. Therefore, this busbar is handled like a line for the following steps.
-* **ATTENTION! Unknown cable number ("X") in UID XY. This way won't be cloned automatically**: This can happen if a line has more than one voltage level and more than 2 cables. Based on the data the GridTool cannot know which voltage level has how many cables. This line is not cloned. A manual review of that line in the results is necessary. A check with other sources is recommended.
+* **ATTENTION! Unknown cable number ("X") in UID XY. This way won't be cloned automatically**: This can happen if a line has more than one voltage level and more than 2 systems. Based on the data the GridTool cannot know which voltage level has how many cables. This line is not cloned. A manual review of that line in the results is necessary. A check with other sources is recommended.
 * **ATTENTION: Real line lenght WON'T be calculted! Beeline-length (Luftlinie) will be used**: The user is informed, that bool.calculate_real_line_length is set to false and therefore the beeline-length (shortest distance between start and end nodes) is used in the results.
 * **ATTENTION!  More than 12 voltage levels are selected. Colors of voltage lines do repeat now! It is recommended to select max. 12 voltage levels**: For plotting the results, 12 colors for lines with different voltage levels that work good together have been defined. If there are more than 12 voltage levels the user is informed, that the colors repeat again. The user could define more colors in the MATLAB code.
 
@@ -64,16 +74,18 @@ The GridTool provides the user with warnings in the MATLAB console if it detects
 The GridTool has been already used for research in different papers and projects. Some examples are listed below.
 
 ### Project START2030
-The publicly funded project [START2030](https://start2030.wifo.ac.at/) aims at providing comprehensive analyses of the economic incidence and social impacts of a transition to a 100% renewable electricity system by 2030 as determined by Austria's Renewable-Energy-Act (EAG). For this the techno-economic simulation model ATLANTIS [[2]](https://doi.org/10.1007/s10100-015-0413-8) and the macroeconomic model DYNK [[3]](https://doi.org/10.1016/j.enpol.2018.11.030) are linked. For this project Austria's electricity grid in ATLANTIS was expanded to include the 110 kV network. As there is no public information about the distribution grid available from the Austrian DSOs, the GridTool was utilized to use the data from OpenStreetMap.
+The publicly funded project [START2030](https://start2030.wifo.ac.at/) aims at providing comprehensive analyses of the economic incidence and social impacts of a transition to a 100% renewable electricity system by 2030 as determined by Austria's Renewable-Energy-Act (EAG). For this the techno-economic simulation model ATLANTIS [[3]](https://doi.org/10.1007/s10100-015-0413-8) and the macroeconomic model DYNK [[4]](https://doi.org/10.1016/j.enpol.2018.11.030) are linked. For this project Austria's electricity grid in ATLANTIS was expanded to include the 110 kV network. As there is no public information about the distribution grid available from the Austrian DSOs, the GridTool was utilized to use the data from OpenStreetMap.
 
 ### Publication Modelling Africa's Power System
-In order to build a digital twin of Africa's power system, the GridTool has been used to get electricity grid data. The data was then implemented into the Low-Carbon Expansion and Generaton (LEGO) model to perform techno-economic simulations. A research using this digital twin about transforming Africa's power system to 100% renewables can be found here [[4]](https://www.energy-proceedings.org/wp-content/uploads/2022/08/MITAB_2022_paper_2510.pdf).
+In order to build a digital twin of Africa's power system, the GridTool has been used to get electricity grid data. The data was then implemented into the Low-Carbon Expansion and Generaton (LEGO) model to perform techno-economic simulations. A research using this digital twin about transforming Africa's power system to 100% renewables can be found here [[5]](https://www.energy-proceedings.org/wp-content/uploads/2022/08/MITAB_2022_paper_2510.pdf).
 
 ## References
 [1] R. Gaugl, S. Wogrin, U. Bachhiesl, L. Frauenlob, (2022). *"GridTool: An Open-Source Tool to Convert Grid Data,"* Preprint [https://doi.org/10.36227/techrxiv.20551569](https://doi.org/10.36227/techrxiv.20551569)
 
-[2] H. Stigler, U. Bachhiesl, G. Nischler, G. Feichtinger, (2016). *"ATLANTIS: techno-economic model of the European electricity sector,"* Central European Journal of Operations Research, <i>24</i>(4), 965–988. [https://doi.org/10.1007/s10100-015-0413-8](https://doi.org/10.1007/s10100-015-0413-8)
+[2] ENTSO-E, (2019). *"ENTSO-E Transmission System Map,"* (https://www.entsoe.eu/data/map/)
 
-[3] M. Kirchner, M. Sommer, K. Kratena, D. Kletzan-Slamanig, C. Kettner-Marx, (2019). *"CO2 taxes, equity and the double dividend – Macroeconomic model simulations for Austria,"* Energy Policy, Volume 126, Pages 295-314, ISSN 0301-4215, [https://doi.org/10.1016/j.enpol.2018.11.030](https://doi.org/10.1016/j.enpol.2018.11.030).
+[3] H. Stigler, U. Bachhiesl, G. Nischler, G. Feichtinger, (2016). *"ATLANTIS: techno-economic model of the European electricity sector,"* Central European Journal of Operations Research, <i>24</i>(4), 965–988. [https://doi.org/10.1007/s10100-015-0413-8](https://doi.org/10.1007/s10100-015-0413-8)
 
-[4] R. Gaugl, S. Wogrin, and U. Bachhiesl (2022). *"Transition of the African Power System to Renewable Energies-A Case Study,"* Energy Proceedings MIT A+B Applied Energy Symposium, Volume 25, ISSN 2004-2965, [https://www.energy-proceedings.org/transition-of-the-african-power-system-to-renewable-energies-a-case-study/](https://www.energy-proceedings.org/transition-of-the-african-power-system-to-renewable-energies-a-case-study/)
+[4] M. Kirchner, M. Sommer, K. Kratena, D. Kletzan-Slamanig, C. Kettner-Marx, (2019). *"CO2 taxes, equity and the double dividend – Macroeconomic model simulations for Austria,"* Energy Policy, Volume 126, Pages 295-314, ISSN 0301-4215, [https://doi.org/10.1016/j.enpol.2018.11.030](https://doi.org/10.1016/j.enpol.2018.11.030).
+
+[5] R. Gaugl, S. Wogrin, and U. Bachhiesl (2022). *"Transition of the African Power System to Renewable Energies-A Case Study,"* Energy Proceedings MIT A+B Applied Energy Symposium, Volume 25, ISSN 2004-2965, [https://www.energy-proceedings.org/transition-of-the-african-power-system-to-renewable-energies-a-case-study/](https://www.energy-proceedings.org/transition-of-the-african-power-system-to-renewable-energies-a-case-study/)
