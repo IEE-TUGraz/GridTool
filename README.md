@@ -35,7 +35,7 @@ This provides a step-by-step instruction on how to run the GridTool. The steps a
   <b>Figure 2.</b> Step-by-step guide for how to use the GridTool.
 </p>
 
-## Use in ESMs
+### Use in ESMs
 1) Before using the data for power flow caculcations in ESMs, the results should be reviewed and rechecked with other sources (like the grid map from ENTSO-E [[2]]([https://doi.org/10.36227/techrxiv.20551569](https://www.entsoe.eu/data/map/)).
 2) The column "Note" should be checked for the following comments, which indicate a problem with the line:
   a) **multiple vlevels**: Line has multiple voltage levels assigned to it. If it has more systems than votlage levels, the line might not have been multiplied correctl. See also warning in the MATLAB console.
@@ -43,17 +43,6 @@ This provides a step-by-step instruction on how to run the GridTool. The steps a
 3) Add values for electric parameters (R, XL, XC, Itherm) to each line.
 4) To allow power flow between different voltage levels, transformers need to be added between nodes at the same power station. These can easily be identified by the same lat- and lon-coordinates.
 5) Integrate the data into you ESM.
-6) 
-
-## Illustrative Example: Austrian Transmission Grid
-In the figure below is a comparison between the official grid map from the Austrian transmission system operator APG (downloaded: August 3rd, 2022) and the result of the GridTool (data downloaded from OpenStreetMap: August 2nd, 2022). To run this illustrative example, you can use the *2022-08-02_Austria_220kV_and_380kV.json* file found in this repository with the GridTool. Figure 3 compares the official grid map from Austrias transmission system operator [APG](https://www.apg.at/stromnetz/stromnetz-oesterreich/) with the results of the GridTool.
-
-<p align="center">
-  <img src="Figures/APG_Netzkarte.png" alt="APG_Netzkarte]" width="40%" />
-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <img src="Figures/Final_Results_Map.png" alt="GridTool_Final_Results_Map]" width="40%" /></br>
-  <b>Figure 3.</b> Official grid map from the Austrian transmission operator APG (l.s) and final results from the GridTool displayed on a map (r.s).
-</p>
 
 ### Warnings
 The GridTool provides the user with warnings in the MATLAB console if it detects incosistent data or other errors. To help the user with handling the warnings, they are explained here with possible solutions.
@@ -68,7 +57,15 @@ The GridTool provides the user with warnings in the MATLAB console if it detects
 * **ATTENTION!  More than 12 voltage levels are selected. Colors of voltage lines do repeat now! It is recommended to select max. 12 voltage levels**: For plotting the results, 12 colors for lines with different voltage levels that work good together have been defined. If there are more than 12 voltage levels the user is informed, that the colors repeat again. The user could define more colors in the MATLAB code.
 
 
+## Illustrative Example: Austrian Transmission Grid
+In the figure below is a comparison between the official grid map from the Austrian transmission system operator APG (downloaded: August 3rd, 2022) and the result of the GridTool (data downloaded from OpenStreetMap: August 2nd, 2022). To run this illustrative example, you can use the *2022-08-02_Austria_220kV_and_380kV.json* file found in this repository with the GridTool. Figure 3 compares the official grid map from Austrias transmission system operator [APG](https://www.apg.at/stromnetz/stromnetz-oesterreich/) with the results of the GridTool.
 
+<p align="center">
+  <img src="Figures/APG_Netzkarte.png" alt="APG_Netzkarte]" width="40%" />
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="Figures/Final_Results_Map.png" alt="GridTool_Final_Results_Map]" width="40%" /></br>
+  <b>Figure 3.</b> Official grid map from the Austrian transmission operator APG (l.s) and final results from the GridTool displayed on a map (r.s).
+</p>
 
 ## Use Cases
 The GridTool has been already used for research in different papers and projects. Some examples are listed below.
