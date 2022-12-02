@@ -36,10 +36,10 @@ This provides a step-by-step instruction on how to run the GridTool. The steps a
 </p>
 
 ### Use in ESMs
-1) Before using the data for power flow caculcations in ESMs, the results should be reviewed and rechecked with other sources (like the grid map from ENTSO-E [[2]]([https://doi.org/10.36227/techrxiv.20551569](https://www.entsoe.eu/data/map/)).
+1) Before using the data for power flow caculcations in ESMs, the results should be reviewed and rechecked with other sources (e.g. ENTSO-E Transmission System Map [[2]](https://www.entsoe.eu/data/map/)).
 2) The column "Note" should be checked for the following comments, which indicate a problem with the line:
-  a) **multiple vlevels**: Line has multiple voltage levels assigned to it. If it has more systems than votlage levels, the line might not have been multiplied correctl. See also warning in the MATLAB console.
-  b) **potentially DC**: This indicates that the line could be a DC-line based on tag information. Recheck with other sources advised.
+   1) **multiple vlevels**: Line has multiple voltage levels assigned to it. If it has more systems than votlage levels, the line might not have been multiplied correctl. See also warning in the MATLAB console.
+   2) **potentially DC**: This indicates that the line could be a DC-line based on tag information. Recheck with other sources advised.
 3) Add values for electric parameters (R, XL, XC, Itherm) to each line.
 4) To allow power flow between different voltage levels, transformers need to be added between nodes at the same power station. These can easily be identified by the same lat- and lon-coordinates.
 5) Integrate the data into you ESM.
