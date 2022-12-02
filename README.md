@@ -45,6 +45,21 @@ In the figure below is a comparison between the official grid map from the Austr
   <b>Figure 3.</b> Official grid map from the Austrian transmission operator APG (l.s) and final results from the GridTool displayed on a map (r.s).
 </p>
 
+### Warnings
+The GridTool provides the user with warnings in the MATLAB console if it detects incosistent data or other errors. To help the user with handling the warnings, they are explained here with possible solutions.
+
+* **ATTENTION! There is at least one way/node element which has a different amount of fields. It won't be imported!** : If the data exported from OSM has corrupted elements (hence, a field like "tags" is missing), this element will be ignored. A manual review of the *.json file is necessary.
+* **ATTENTION! Way element UID XY does not contain a field "voltage". This way won't be selected**: Lines that do not have a field 'voltage' will be skipped. The lines with the printed UID should be checked manually by the user.
+* **ATTENTION! UNKNOWN voltage level ("XYZ") in UID XY. This way won't be selected.**: This error can happen if the voltage level in the field "voltage" is either empty or text instead of a number. A manual review of that line with that UID in the *.json file is necessary.
+* **ATTENTION! Two/Three voltage levels ("XYZ") in UID XY. This way will be duplicated/tripled**: The user is informed, that a line has two or three voltage levels and the line is doupled/tripled. No immediate user action needed, but the user can check with other sources if this is correct.
+* **ATTENTION!  Way Element UID XY has type "busbar" or "bay", but is too long. Length: X km of max. Y km. This way won't be added to the "busbar" exception list**: The user is informed that a line has a value "busbar" or "bay" but its length is longer than the length set in busbar_max_length. Therefore, this busbar is handled like a line for the following steps.
+* **ATTENTION! Unknown cable number ("X") in UID XY. This way won't be cloned automatically**: This can happen if a line has more than one voltage level and more than 2 cables. Based on the data the GridTool cannot know which voltage level has how many cables. This line is not cloned. A manual review of that line in the results is necessary. A check with other sources is recommended.
+* **ATTENTION: Real line lenght WON'T be calculted! Beeline-length (Luftlinie) will be used**: The user is informed, that bool.calculate_real_line_length is set to false and therefore the beeline-length (shortest distance between start and end nodes) is used in the results.
+* **ATTENTION!  More than 12 voltage levels are selected. Colors of voltage lines do repeat now! It is recommended to select max. 12 voltage levels**: For plotting the results, 12 colors for lines with different voltage levels that work good together have been defined. If there are more than 12 voltage levels the user is informed, that the colors repeat again. The user could define more colors in the MATLAB code.
+
+
+
+
 ## Use Cases
 The GridTool has been already used for research in different papers and projects. Some examples are listed below.
 
