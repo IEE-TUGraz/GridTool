@@ -56,6 +56,14 @@ The GridTool provides the user with warnings in the MATLAB console if it detects
 * **ATTENTION: Real line lenght WON'T be calculted! Beeline-length (Luftlinie) will be used**: The user is informed, that bool.calculate_real_line_length is set to false and therefore the beeline-length (shortest distance between start and end nodes) is used in the results.
 * **ATTENTION!  More than 12 voltage levels are selected. Colors of voltage lines do repeat now! It is recommended to select max. 12 voltage levels**: For plotting the results, 12 colors for lines with different voltage levels that work good together have been defined. If there are more than 12 voltage levels the user is informed, that the colors repeat again. The user could define more colors in the MATLAB code.
 
+### Deault behavior for missing tag data
+The GridTool also uses tag information from OSM to find out the frquency of a line, voltage level, number of systems and so on. If some of the data is missing, the GridTool will fall back to defeault behaviors (but warnings will be shown in the MATLAB console).
+
+* **No voltage level**: The line will be skipped and a warning message will be displayed to manually check the line.
+* **No frequency**: It is assumed to be a 50 Hz AC-line.
+* **No number of cables**: It is assumed to be just one system/line. A warning message will be displayed.
+* **No name**: The GridTool does not rely on the name of an element. Therefore, an empty name tag will be ignored.
+
 
 ## Illustrative Example: Austrian Transmission Grid
 In the figure below is a comparison between the official grid map from the Austrian transmission system operator APG (downloaded: August 3rd, 2022) and the result of the GridTool (data downloaded from OpenStreetMap: August 2nd, 2022). To run this illustrative example, you can use the *2022-08-02_Austria_220kV_and_380kV.json* file found in this repository with the GridTool. Figure 3 compares the official grid map from Austrias transmission system operator [APG](https://www.apg.at/stromnetz/stromnetz-oesterreich/) with the results of the GridTool.
