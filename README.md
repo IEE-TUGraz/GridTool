@@ -1,8 +1,8 @@
 # GridTool
 
-GridTool is an easy-to-use tool to convert and simplify electricity grid data from [OpenStreetMap](https://www.openstreetmap.org/) for the use in energy simulation models (ESMs). Instead of relying on relations between lines and power stations (that are often missing) in the OpenStreetMap-data, the tool uses a heuristic approach to identify grid nodes and simplifies the data.
+GridTool is an easy-to-use tool to convert and simplify electricity grid data from [OpenStreetMap](https://www.openstreetmap.org/) for the use in power simulation models (PSMs). Instead of relying on relations between lines and power stations (that are often missing) in the OpenStreetMap-data, the tool uses a heuristic approach to identify grid nodes and simplifies the data.
 
-The GridTool shortens the lengthy process of converting and simplyfying electricity grid data from transmission and distribution system operators (TSOs and DSOs) for the use in ESMs to mere seconds.
+The GridTool shortens the lengthy process of converting and simplyfying electricity grid data from transmission and distribution system operators (TSOs and DSOs) for the use in PSMs to mere seconds.
 
 The tool is programmed in MATLAB and the main advantages are its flexibility and easy customizability. The final results are two Excel files. One contains the nodes (power stations) and the second one contains the lines.
 
@@ -35,14 +35,14 @@ This provides a step-by-step instruction on how to run the GridTool. The steps a
   <b>Figure 2.</b> Step-by-step guide for how to use the GridTool.
 </p>
 
-### Use in ESMs
-1) Before using the data for power flow caculcations in ESMs, the results should be reviewed and rechecked with other sources (e.g. ENTSO-E Transmission System Map [[2]](https://www.entsoe.eu/data/map/)).
+### Using Output of GridTool in Power System Models
+1) Before using the data for power flow caculcations in PSMs, the results should be reviewed and rechecked with other sources (e.g. ENTSO-E Transmission System Map [[2]](https://www.entsoe.eu/data/map/)).
 2) The column "Note" should be checked for the following comments, which indicate a problem with the line:
    1) **multiple vlevels**: Line has multiple voltage levels assigned to it. If it has more systems than votlage levels, the line might not have been multiplied correctl. See also warning in the MATLAB console.
    2) **potentially DC**: This indicates that the line could be a DC-line based on tag information. Recheck with other sources advised.
 3) Add values for electric parameters (R, XL, XC, Itherm) to each line.
 4) To allow power flow between different voltage levels, transformers need to be added between nodes at the same power station. These can easily be identified by the same lat- and lon-coordinates.
-5) Integrate the data into you ESM.
+5) Integrate the data into your PSM.
 
 ### Warnings
 The GridTool provides the user with warnings in the MATLAB console if it detects incosistent data or other errors. To help the user with handling the warnings, they are explained here with possible solutions.
