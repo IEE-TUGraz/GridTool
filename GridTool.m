@@ -1,4 +1,4 @@
-%% GridTool - V1.3
+%% GridTool - V1.7
 % ABSTRACT
 % This skript uses map data downloaded from the open street map project, 
 % imports it to matlab, processes, visualizes and cleans up the data and 
@@ -8,12 +8,15 @@
 %
 % INSTRUCTIONS TO IMPORT DATA
 % Go to https://overpass-turbo.eu, click "Wizard" and create a search query
-% like "power=line and voltage=* in "Austria"". The first part specifies
+% like "power=line and voltage=* in Austria". The first part specifies
 % overland power transmission lines, the second the voltage level ("*" means 
-% that any voltage level is accepted) and the third the country code.
+% that any voltage level is accepted) and the third the country.
 % Click "run" and if applicable "continue anyway". If necessary, raise the
-% "[timeout: xx]" limit. Then export data as "raw OSM data" to a "*.json" file.
-% 
+% "[timeout: xx]" limit. 
+% Then export the data as "raw OSM data" by clicking on the "Export" button  
+% and selecting the "download" button next to "raw OSM data". A 
+% "export.json" file will be downloaded to your computer.
+%
 % 
 % DESCRIPTION
 % The ".json" file will be imported as "data_raw", all elementes will be
@@ -56,6 +59,9 @@
 %        Camparison plot
 % V1.5 - April 2022 - Robert Gaugl - Changed name to GridTool and changed 
 %        export function to only contain relevant data
+% V1.6 - November 2022 - Robert Gaugl - Changed description of warnings/errors
+% V1.7 - December 2022 - Robert Gaugl - Changed Inctructions to download data 
+%		 from overpass-turbo to make this process clearer.
 % V1.X - Bugfixes/added features, please describe them here
 
 
