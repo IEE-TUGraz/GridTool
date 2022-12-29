@@ -17,7 +17,8 @@ GridTool is split into 6 modules that itself are divided into 24 functions to en
 </p>
 
 ## System Requirements
-* PC with MATLAB version R2021a installed and a valid licence (GridTool is programmed in a way that it should be compatible with older and newer versions, but it is not tested with other MATLAB versions.)
+* **MATLAB**. The GridTool is coded in MATLAB. In order to use the GridTool, MATLAB with a valid MATLAB licence is required. GridTool is tested with MATLAB version R2021a, but is programmed in a way that it should be compatible with older and newer versions.
+* **Microsoft Excel.** The results of the GridTool are stored in Microsoft Excel files (.xlsx).
 
 ## Manual
 This provides a step-by-step instruction on how to run the GridTool. The steps are also visualized in the Figure 2.
