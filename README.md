@@ -21,6 +21,9 @@ GridTool is split into 6 modules that itself are divided into 24 functions to en
 * **Microsoft Excel.** The results of the GridTool are stored in Microsoft Excel files (.xlsx).
 
 ## Manual
+
+A comprehensive PDF-manual can be found in the docs folder or via [this link](https://github.com/IEE-TUGraz/GridTool/blob/main/docs/GridTool_User_Manual.pdf). Below is a summary of the most important things of the manual.
+
 This provides a step-by-step instruction on how to run the GridTool. The steps are also visualized in the Figure 2.
 1) Download the GridTool.m file on a PC that meets the system requirements.
 2) Download the electricity grid data from OpenStreetMap using the [OverpassTurbo](https://overpass-turbo.eu/) website. An example of a query to download Austria's electricity grid lines between 220 kV and 380 kV can be found in the file *OverpassTurbo_Example_Query.txt*. Run the query in OverpassTurbo and export  the result as "Raw OSM data", which downloads the data in the json file format. For testing purposes you can also use the *2022-08-02_Austria_220kV_and_380kV.json* file provided in the repository.
