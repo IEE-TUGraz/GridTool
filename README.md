@@ -95,6 +95,6 @@ In order to build a digital twin of Africa's power system, the GridTool has been
 
 [3] H. Stigler, U. Bachhiesl, G. Nischler, G. Feichtinger, (2016). *"ATLANTIS: techno-economic model of the European electricity sector,"* Central European Journal of Operations Research, <i>24</i>(4), 965–988. [https://doi.org/10.1007/s10100-015-0413-8](https://doi.org/10.1007/s10100-015-0413-8)
 
-[4] M. Kirchner, M. Sommer, K. Kratena, D. Kletzan-Slamanig, C. Kettner-Marx, (2019). *"CO2 taxes, equity and the double dividend – Macroeconomic model simulations for Austria,"* Energy Policy, Volume 126, Pages 295-314, ISSN 0301-4215. [https://doi.org/10.1016/j.enpol.2018.11.030](https://doi.org/10.1016/j.enpol.2018.11.030).
+[4] M. Kirchner, M. Sommer, K. Kratena, D. Kletzan-Slamanig, C. Kettner-Marx, (2019). *"CO2 taxes, equity and the double dividend – Macroeconomic model simulations for Austria,"* Energy Policy, Volume 126, Pages 295-314, ISSN 0301-4215. [https://doi.org/10.1016/j.enpol.2018.11.030](https://doi.org/10.1016/j.enpol.2018.11.030)
 
 [5] R. Gaugl, S. Wogrin, and U. Bachhiesl (2022). *"Transition of the African Power System to Renewable Energies-A Case Study,"* Energy Proceedings MIT A+B Applied Energy Symposium, Volume 25, ISSN 2004-2965. [https://www.energy-proceedings.org/transition-of-the-african-power-system-to-renewable-energies-a-case-study/](https://www.energy-proceedings.org/transition-of-the-african-power-system-to-renewable-energies-a-case-study/)
