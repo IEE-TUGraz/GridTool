@@ -6,7 +6,7 @@ The GridTool shortens the lengthy process of converting and simplyfying electric
 
 The tool is programmed in MATLAB and the main advantages are its flexibility and easy customizability. The final results are two Excel files. One contains the nodes (power stations) and the second one contains the lines.
 
-You can use this code freely according to the [LICENSE file](https://opensource.org/licenses/MIT), but please cite our (preprint) paper [[1]](https://doi.org/10.36227/techrxiv.20551569) if you do.
+You can use this code freely according to the [LICENSE file](https://opensource.org/licenses/MIT), but please cite our paper [[1]](https://doi.org/10.1016/j.softx.2023.101314) if you do.
 
 ## Software Architecture
 GridTool is split into 6 modules that itself are divided into 24 functions to ensure clarity, maintainability and easy expandability. The flowchart in Figure 1 shows the 6 modules and 24 functions. A detailed description of the functionality of these functions can be found in [[1]](https://doi.org/10.1016/j.softx.2023.101314) as well as in the comments of the MATLAB code itself.
@@ -89,12 +89,12 @@ The publicly funded project [START2030](https://start2030.wifo.ac.at/) aims at p
 In order to build a digital twin of Africa's power system, the GridTool has been used to get electricity grid data. The data was then implemented into the Low-Carbon Expansion and Generaton (LEGO) model to perform techno-economic simulations. A research using this digital twin about transforming Africa's power system to 100% renewables can be found here [[5]](https://www.energy-proceedings.org/wp-content/uploads/2022/08/MITAB_2022_paper_2510.pdf).
 
 ## References
-[1] R. Gaugl, S. Wogrin, U. Bachhiesl, L. Frauenlob, (2023). *"GridTool: An open-source tool to convert electricity grid data,"* SoftwareX, Volume 21 [https://doi.org/10.1016/j.softx.2023.101314](https://doi.org/10.1016/j.softx.2023.101314)
+[1] R. Gaugl, S. Wogrin, U. Bachhiesl, L. Frauenlob, (2023). *"GridTool: An open-source tool to convert electricity grid data,"* SoftwareX, Volume 21, ISSN 2352-7110. [https://doi.org/10.1016/j.softx.2023.101314](https://doi.org/10.1016/j.softx.2023.101314)
 
 [2] ENTSO-E, (2019). *"ENTSO-E Transmission System Map,"* (https://www.entsoe.eu/data/map/)
 
 [3] H. Stigler, U. Bachhiesl, G. Nischler, G. Feichtinger, (2016). *"ATLANTIS: techno-economic model of the European electricity sector,"* Central European Journal of Operations Research, <i>24</i>(4), 965–988. [https://doi.org/10.1007/s10100-015-0413-8](https://doi.org/10.1007/s10100-015-0413-8)
 
-[4] M. Kirchner, M. Sommer, K. Kratena, D. Kletzan-Slamanig, C. Kettner-Marx, (2019). *"CO2 taxes, equity and the double dividend – Macroeconomic model simulations for Austria,"* Energy Policy, Volume 126, Pages 295-314, ISSN 0301-4215, [https://doi.org/10.1016/j.enpol.2018.11.030](https://doi.org/10.1016/j.enpol.2018.11.030).
+[4] M. Kirchner, M. Sommer, K. Kratena, D. Kletzan-Slamanig, C. Kettner-Marx, (2019). *"CO2 taxes, equity and the double dividend – Macroeconomic model simulations for Austria,"* Energy Policy, Volume 126, Pages 295-314, ISSN 0301-4215. [https://doi.org/10.1016/j.enpol.2018.11.030](https://doi.org/10.1016/j.enpol.2018.11.030).
 
-[5] R. Gaugl, S. Wogrin, and U. Bachhiesl (2022). *"Transition of the African Power System to Renewable Energies-A Case Study,"* Energy Proceedings MIT A+B Applied Energy Symposium, Volume 25, ISSN 2004-2965, [https://www.energy-proceedings.org/transition-of-the-african-power-system-to-renewable-energies-a-case-study/](https://www.energy-proceedings.org/transition-of-the-african-power-system-to-renewable-energies-a-case-study/)
+[5] R. Gaugl, S. Wogrin, and U. Bachhiesl (2022). *"Transition of the African Power System to Renewable Energies-A Case Study,"* Energy Proceedings MIT A+B Applied Energy Symposium, Volume 25, ISSN 2004-2965. [https://www.energy-proceedings.org/transition-of-the-african-power-system-to-renewable-energies-a-case-study/](https://www.energy-proceedings.org/transition-of-the-african-power-system-to-renewable-energies-a-case-study/)
