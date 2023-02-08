@@ -26,7 +26,7 @@ A comprehensive PDF-manual can be found in the docs folder or via [this link](ht
 
 This provides a step-by-step instruction on how to run the GridTool. The steps are also visualized in the Figure 2.
 1) Download the GridTool.m file on a PC that meets the system requirements.
-2) Download the electricity grid data from OpenStreetMap using the [OverpassTurbo](https://overpass-turbo.eu/) website. An example of a query to download Austria's electricity grid lines between 220 kV and 380 kV can be found in the file *OverpassTurbo_Example_Query.txt*. Run the query in OverpassTurbo and export  the result as "Raw OSM data", which downloads the data in the json file format. For testing purposes you can also use the *2022-08-02_Austria_220kV_and_380kV.json* file provided in the repository.
+2) Download the electricity grid data from OpenStreetMap using the [OverpassTurbo](https://overpass-turbo.eu/) website. An example of a query to download Austria's electricity grid lines between 220 kV and 380 kV can be found in the file *OverpassTurbo_Example_Query.overpassql*. Run the query in OverpassTurbo and export  the result as "Raw OSM data", which downloads the data in the json file format. For testing purposes you can also use the *2022-08-02_Austria_220kV_and_380kV.json* file provided in the repository.
 3) Open the GridTool.m file in Matlab.
 4) Adjust the settings in the *Initialization and Settings* section of the code.
 5) Run the code by clicking the "Run"-button or pressing "F5".
