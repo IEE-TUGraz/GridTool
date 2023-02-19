@@ -13,9 +13,9 @@ GridTool is split into 6 modules that itself are divided into 24 functions to en
 
 <p align="center">
   <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="Figures/GridTool_FlowChart_Detailed_DarkMode.png">
-  <img alt="Flowchart_GridTool" src="Figures/GridTool_FlowChart_Detailed.png" width="80%">
-</picture></br>
+    <source media="(prefers-color-scheme: dark)" srcset="Figures/GridTool_FlowChart_Detailed_DarkMode.png">
+    <img alt="Flowchart_GridTool" src="Figures/GridTool_FlowChart_Detailed.png" width="80%">
+  </picture></br>
   <b>Figure 1.</b> Flowchart showing the 6 modules and 24 funcitons of the GridTool.
 </p>
 
@@ -38,7 +38,9 @@ This provides a step-by-step instruction on how to run the GridTool. The steps a
 6) The GridTool is completed, when it displays "CONVERSION COMPLETED" in the MATLAB console. The final files can be found in the folder where the GridTool.m file is saved.
 
 <p align="center">
-  <img src="Figures/GridTool_Illustrative_Example.png" alt="GridTool_Illustrative_Example]" width="80%" /></br>
+  <source media="(prefers-color-scheme: dark)" srcset="Figures/GridTool_Illustrative_Example_DarkMode.png">
+    <img alt="GridTool_Illustrative_Example" src="Figures/GridTool_Illustrative_Example.png" width="80%">
+  </picture></br>
   <b>Figure 2.</b> Step-by-step guide for how to use the GridTool.
 </p>
 
