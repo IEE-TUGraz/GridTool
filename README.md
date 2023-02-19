@@ -12,7 +12,10 @@ You can use this code freely according to the [LICENSE file](https://opensource.
 GridTool is split into 6 modules that itself are divided into 24 functions to ensure clarity, maintainability and easy expandability. The flowchart in Figure 1 shows the 6 modules and 24 functions. A detailed description of the functionality of these functions can be found in [[1]](https://doi.org/10.1016/j.softx.2023.101314) as well as in the comments of the MATLAB code itself.
 
 <p align="center">
-  <img src="Figures/GridTool_FlowChart_Detailed.png" alt="Flowchart_GridTool" width="80%" /></br>
+  <picture>
+  <source media="(prefers-color-scheme: dark)" srcset="Figures/GridTool_FlowChart_Detailed_DarkMode.png">
+  <img alt="Flowchart_GridTool" src="Figures/GridTool_FlowChart_Detailed.png" width="80%">
+</picture></br>
   <b>Figure 1.</b> Flowchart showing the 6 modules and 24 funcitons of the GridTool.
 </p>
 
